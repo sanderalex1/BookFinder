@@ -14,7 +14,9 @@ export const BookProvider = ({ children }) => {
   }, []); //store an array of favorite books in a local storage as a JSON and convert it back to JS object
 
   useEffect(() => {
-    localStorage.setItem(`favorites`, JSON.stringify(favorites));
+    if (favorites.length !== 0) {
+      localStorage.setItem(`favorites`, JSON.stringify(favorites));
+    }
   }, [favorites]); //anytime the "favorites" state changes we update what we store in local storage
 
   const addToFavorites = (book) => {
